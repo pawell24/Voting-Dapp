@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import Web3 from "web3";
+import {
+  Button,
+  GlobalStyle,
+  StyledDiv,
+  StyledHeader,
+} from "./components/Components.styled";
 import Item from "./components/Item";
 import List from "./components/List";
-import { Navbar, Container, Button } from "react-bootstrap";
-import styled, { createGlobalStyle } from "styled-components";
 function App() {
   const web3 = new Web3(window.web3.currentProvider);
   const { ethereum } = window;
@@ -188,7 +192,6 @@ function App() {
       .call();
 
     setCandidatesLength(numberOfcandidats);
-    console.log(isMetamaskConnected);
   }, []);
 
   return (
@@ -196,13 +199,13 @@ function App() {
       <GlobalStyle />
       <StyledHeader>
         <h1 href="#home">Crypto Project</h1>
-        {!isMetamaskConnected && (
-          <Button variant="info" onClick={connect}>
-            Connect
-          </Button>
+        {isMetamaskConnected ? (
+          <StyledDiv>{String(currentAccount).slice(0, 8) + "..."}</StyledDiv>
+        ) : (
+          <Button onClick={connect}>Connect</Button>
         )}
       </StyledHeader>
-      <h2>{currentAccount}</h2>
+
       {candidatesLength === 0 ? null : (
         <List>
           {variants.map((variant) => (
@@ -213,25 +216,5 @@ function App() {
     </div>
   );
 }
-
-const StyledHeader = styled.header`
-  width: 100vw;
-  height: 10vh;
-  background-color: white;
-  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-`;
-
-const GlobalStyle = createGlobalStyle`
-*{
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  box-sizing: border-box;
-}
-`;
 
 export default App;
