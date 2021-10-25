@@ -6,4 +6,4 @@ Here you can cast your votes for individual candidates. All data is downloaded f
 
 The application is integrated with the metamask.
 
-<img src="screen1.png"/>
+<img src="screen2.png"/>
