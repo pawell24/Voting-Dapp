@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button } from "./Components.styled";
 const Item = ({ id, name, voteCount, handleVoting }) => {
   return (
     <li
@@ -14,8 +14,8 @@ const Item = ({ id, name, voteCount, handleVoting }) => {
     >
       <h2>{id}</h2>
       <h2>{name}</h2>
-      <h2 style={{ marginRight: "-3px" }}>{voteCount}</h2>
-      <Button variant="info" onClick={() => handleVoting(id)}>
+      <p>{voteCount}</p>
+      <Button style={{ marginLeft: "10px" }} onClick={() => handleVoting(id)}>
         Vote
       </Button>
     </li>
